@@ -7,12 +7,10 @@ let secondTermValid
 
 firstTerm.addEventListener("change", () => {
     firstTermValid = expressionRegex.test(firstTerm.value);
-    console.log(firstTermValid);
 });
 
 secondTerm.addEventListener("change", () => {
     secondTermValid = expressionRegex.test(secondTerm.value);
-    console.log(secondTermValid)
 })
 
 function calc () {
