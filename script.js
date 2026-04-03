@@ -18,6 +18,11 @@ function calc () {
     const value1 = Number(firstTerm.value)
     const value2 = Number(secondTerm.value)
 
+    if (!firstTermValid || !secondTermValid) {
+        alert("Um ou mais valores é inválido!")
+
+    }
+
     switch (selected.value) {
         case "some":
             alert("Resultado: " + (value1 + value2))
@@ -32,6 +37,14 @@ function calc () {
             break
 
         case "divide":
+            if (value2 == 0)
+                alert("Não é possível fazer uma divisão por 0!")
+            
             alert("Resultado: " + (value1 / value2))
+            break
+        
+        default:
+            alert("Operação inválida!")
+            break
     }
 }
