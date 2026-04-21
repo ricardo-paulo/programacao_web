@@ -47,8 +47,8 @@ const coinSymbols = {
 }
 
 const coinsRealValue = {
-    'dolar': 4.95,
-    'euro': 5.84,
-    'libra': 6.70,
-    'iene': 0.031
+    'dolar': 0.20,
+    'euro': 0.17,
+    'libra': 0.15,
+    'iene': 32.11
 }
