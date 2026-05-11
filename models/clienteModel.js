@@ -20,7 +20,7 @@ class clienteModel {
         const sql = 'INSERT INTO clientes (nome, email, telefone, data_de_nascimento, data_cadastro) VALUES (?, ?, ?, ?, ?)'
 
         const connection = await criarConnection()
-        const resultado = await connection.query(sql, novoCliente)
+        const resultado = await connection.execute(sql, novoCliente)
 
         connection.end()
 
@@ -33,7 +33,29 @@ class clienteModel {
         const sql = 'DELETE FROM clientes WHERE id = ?'
 
         const connection = await criarConnection()
-        const resultado = await connection.query(sql, id)
+        const resultado = await connection.execute(sql, id)
+
+        connection.end()
+
+        return resultado
+
+    }
+
+    async atualizar (id, dadosNovos) {
+
+        const sql = `
+        UPDATE clientes
+        SET nome = ?,
+        email = ?,
+        telefone = ?,
+        data_de_nascimento = ?,
+        data_cadastro = ?
+        WHERE id = ?;
+        `
+
+        dadosNovos.push(id)
+        const connection = await criarConnection()
+        const resultado = await connection.execute(sql, dadosNovos)
 
         connection.end()
 

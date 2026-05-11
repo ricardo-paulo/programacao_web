@@ -9,12 +9,12 @@ class Tables {
 
         const sql = 
             `CREATE TABLE IF NOT EXISTS clientes(
-            id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-            nome VARCHAR (100) NOT NULL,
-            email VARCHAR (100) NOT NULL UNIQUE,        
-            telefone VARCHAR (15),
-            data_de_nascimento DATE,
-            data_cadastro DATE
+                id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+                nome VARCHAR (100) NOT NULL,
+                email VARCHAR (100) NOT NULL UNIQUE,        
+                telefone VARCHAR (15),
+                data_de_nascimento DATE,
+                data_cadastro DATE
             );
             `
 

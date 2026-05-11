@@ -7,7 +7,7 @@ router.get("/clientes" , async (req, res) => {
     
     try {
     
-        res.send(await clienteController.buscarTodos())
+        res.status(200).send(await clienteController.buscarTodos())
         
     } catch (error) {
         
@@ -25,10 +25,11 @@ router.post("/clientes" , async (req, res) => {
     try {
         
         const novoCliente = Object.values(req.body)
+        const resultado = await clienteController.criar(novoCliente)
     
         res.status(201).json({
             message: "Usuário criado com sucesso!",
-            resposta_db: await clienteController.criar(novoCliente)
+            resposta_db: resultado
         })
 
     } catch (error) {
@@ -51,10 +52,38 @@ router.post("/clientes" , async (req, res) => {
     }
 })
 
-router.put("/cliente/:id" , (req, res) => {
+router.put("/cliente/:id" , async (req, res) => {
     const { id } = req.params
+    
+    try {
+        
+        const dadosNovos = Object.values(req.body)
+        const resultado = await clienteController.atualizar(id, dadosNovos)
 
-    res.send(`Cliente atualizado com sucesso! ${id}`)
+        if (resultado[0].affectedRows > 0) {
+            
+            res.status(200).json({
+                message: "Usuário atualizado com sucesso!",
+                resposta_db: resultado
+            })
+
+        } else {
+
+            res.status(404).json({
+                message: "Usuário não encontrado!",
+                resposta_db: resultado
+            })
+
+        }
+
+    } catch (error) {
+        
+        res.status(500).json({
+            message: "Falha ao atualizar o usuário.",
+            resposta_db: error.message
+        })
+
+    }
 
 })
 

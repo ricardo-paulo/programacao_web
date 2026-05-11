@@ -9,8 +9,8 @@ class clienteController {
         return await clienteModel.criar(novoCliente)
     }
 
-    async alterar () {
-        return "alterando o cliente com o código" + id + "com"
+    async atualizar (id, dadosNovos) {
+        return await clienteModel.atualizar(id, dadosNovos)
     }
 
     async deletar (id) {
