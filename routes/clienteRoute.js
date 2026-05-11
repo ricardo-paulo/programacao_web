@@ -4,7 +4,20 @@ const Router = require ("express").Router
 const router = Router()
 
 router.get("/clientes" , async (req, res) => {
-    res.send(await clienteController.buscarTodos())
+    
+    try {
+    
+        res.send(await clienteController.buscarTodos())
+        
+    } catch (error) {
+        
+        res.status(500).json({
+            message: "Falha ao listar todos os usuários.",
+            error: error.message
+        })
+
+    }
+
 })
 
 router.post("/clientes" , async (req, res) => {
@@ -21,9 +34,18 @@ router.post("/clientes" , async (req, res) => {
     } catch (error) {
         
         if (error.code === 'ER_DUP_ENTRY') {
-            return res.status(409).json({
+
+            res.status(409).json({
                 error: "Cadastro duplicado! O email inserido já existe no sistema."
             })
+
+        } else {
+
+            res.status(500).json({
+                message: "Falha ao criar um novo usuário.",
+                error: error.message
+            })
+
         }
 
     }
@@ -31,7 +53,9 @@ router.post("/clientes" , async (req, res) => {
 
 router.put("/cliente/:id" , (req, res) => {
     const { id } = req.params
+
     res.send(`Cliente atualizado com sucesso! ${id}`)
+
 })
 
 router.delete("/cliente/:id" , async (req, res) => {
