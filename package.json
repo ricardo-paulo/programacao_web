@@ -1,0 +1,29 @@
+{
+  "name": "programacao_web",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/ricardo-paulo/programacao_web#readme",
+  "bugs": {
+    "url": "https://github.com/ricardo-paulo/programacao_web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardo-paulo/programacao_web.git"
+  },
+  "license": "ISC",
+  "author": "Paulo Ricardo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.22.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
