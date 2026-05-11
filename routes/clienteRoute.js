@@ -7,12 +7,40 @@ router.get("/clientes" , async (req, res) => {
     
     try {
     
-        res.status(200).send(await clienteController.buscarTodos())
+        const resultado = await clienteController.buscar(null)
+        res.status(200).send(resultado)
         
     } catch (error) {
         
         res.status(500).json({
             message: "Falha ao listar todos os usuários.",
+            error: error.message
+        })
+
+    }
+
+})
+
+router.get("/cliente/:id", async (req, res) => {
+
+    const { id } = req.params
+
+    try {
+
+        const resultado = await clienteController.buscar(id)
+        if (resultado.length > 0) {
+            res.status(200).send(resultado[0])
+        } else {
+            res.status(404).json({
+                message: "Usuário não encontrado.",
+                resposta_db: resultado
+            })
+        }
+        
+    } catch (error) {
+        
+        res.status(500).json({
+            message: "Falha ao obter usuário.",
             error: error.message
         })
 

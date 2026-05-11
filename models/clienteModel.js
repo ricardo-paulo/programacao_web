@@ -15,6 +15,19 @@ class clienteModel {
 
     }
 
+    async obterUm (id) {
+
+        const sql = 'SELECT * FROM clientes WHERE id = ?'
+
+        const connection = await criarConnection()
+        const [ res ] = await connection.execute(sql, [ id ])
+
+        connection.end()
+
+        return res
+
+    }
+
     async criar (novoCliente) {
 
         const sql = 'INSERT INTO clientes (nome, email, telefone, data_de_nascimento, data_cadastro) VALUES (?, ?, ?, ?, ?)'

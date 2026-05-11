@@ -1,8 +1,14 @@
 const clienteModel = require ("../models/clienteModel")
 
 class clienteController {
-    async buscarTodos () {
-        return await clienteModel.listar()
+    async buscar (id) {
+
+        if (id) {
+            return await clienteModel.obterUm(id)
+        } else {
+            return await clienteModel.listar()
+        }
+
     }
 
     async criar (novoCliente) {
