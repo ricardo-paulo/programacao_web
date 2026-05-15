@@ -4,7 +4,7 @@ const port = 3000
 
 app.use(express.json())
 
-const router = require("./routes/moduleRotule.js")
+const router = require("./routes/moduleRoute.js")
 const criarConexao = require("./connection/connection.js")
 const table = require("./connection/tables.js")
 

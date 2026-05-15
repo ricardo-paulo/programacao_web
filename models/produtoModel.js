@@ -1,14 +1,14 @@
 const criarConnection = require("../connection/connection")
 
-class clienteModel {
+class produtoModel {
 
     async listar () {
-    
-        const sql = 'SELECT * FROM clientes;'
+
+        const sql = 'SELECT * FROM produtos;'
 
         const connection = await criarConnection()
         const [ res ] = await connection.query(sql)
-        
+
         connection.end()
 
         return res
@@ -17,7 +17,7 @@ class clienteModel {
 
     async obterUm (id) {
 
-        const sql = 'SELECT * FROM clientes WHERE id = ?;'
+        const sql = 'SELECT * FROM produtos WHERE id = ?;'
 
         const connection = await criarConnection()
         const [ res ] = await connection.execute(sql, [ id ])
@@ -28,12 +28,12 @@ class clienteModel {
 
     }
 
-    async criar (novoCliente) {
+    async criar (novoProduto) {
 
-        const sql = 'INSERT INTO clientes (nome, email, telefone, data_de_nascimento, data_cadastro) VALUES (?, ?, ?, ?, ?);'
+        const sql = 'INSERT INTO produtos (nome, codigo, categoria, valor) VALUES (?, ?, ?, ?);'
 
         const connection = await criarConnection()
-        const resultado = await connection.execute(sql, novoCliente)
+        const resultado = await connection.execute(sql, novoProduto)
 
         connection.end()
 
@@ -43,10 +43,10 @@ class clienteModel {
 
     async deletar (id) {
 
-        const sql = 'DELETE FROM clientes WHERE id = ?'
+        const sql = 'DELETE FROM produtos WHERE id = ?;'
 
         const connection = await criarConnection()
-        const resultado = await connection.execute(sql, id)
+        const resultado = await connection.execute(sql, [ id ])
 
         connection.end()
 
@@ -57,12 +57,11 @@ class clienteModel {
     async atualizar (id, dadosNovos) {
 
         const sql = `
-        UPDATE clientes
+        UPDATE produtos
         SET nome = ?,
-        email = ?,
-        telefone = ?,
-        data_de_nascimento = ?,
-        data_cadastro = ?
+        codigo = ?,
+        categoria = ?,
+        valor = ?
         WHERE id = ?;
         `
 
@@ -78,4 +77,4 @@ class clienteModel {
 
 }
 
-module.exports = new clienteModel()
+module.exports = new produtoModel()
