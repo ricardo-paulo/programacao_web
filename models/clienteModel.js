@@ -57,18 +57,11 @@ class clienteModel {
     async atualizar (id, dadosNovos) {
 
         const sql = `
-        UPDATE clientes
-        SET nome = ?,
-        email = ?,
-        telefone = ?,
-        data_de_nascimento = ?,
-        data_cadastro = ?
-        WHERE id = ?;
+        UPDATE clientes SET ? WHERE id = ?;
         `
 
-        dadosNovos.push(id)
         const connection = await criarConnection()
-        const resultado = await connection.execute(sql, dadosNovos)
+        const resultado = await connection.query(sql, [dadosNovos, id])
 
         connection.end()
 

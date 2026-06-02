@@ -58,17 +58,11 @@ class produtoModel {
 
         const sql = `
         UPDATE produtos
-        SET nome = ?,
-        codigo = ?,
-        categoria = ?,
-        valor = ?,
-        id_fornecedor = ?
+        SET ?
         WHERE id = ?;
         `
-
-        dadosNovos.push(id)
         const connection = await criarConnection()
-        const resultado = await connection.execute(sql, dadosNovos)
+        const resultado = await connection.query(sql, [dadosNovos, id])
 
         connection.end()
 

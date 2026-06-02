@@ -59,19 +59,10 @@ class fornecedorModel {
     async atualizar (id, dadosNovos) {
 
         const sql = `
-        UPDATE fornecedores
-        SET razao_social = ?, 
-        nome_fantasia = ?, 
-        cnpj = ?, 
-        email = ?, 
-        telefone = ?, 
-        endereco = ?
-        WHERE id = ?;
+        UPDATE fornecedores SET ? WHERE id = ?;
         `
-
-        dadosNovos.push(id)
         const connection = await criarConnection()
-        const resultado = await connection.execute(sql, dadosNovos)
+        const resultado = await connection.query(sql, [dadosNovos, id])
 
         connection.end()
 

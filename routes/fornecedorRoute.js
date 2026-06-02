@@ -121,7 +121,7 @@ router.put("/fornecedor/:id", async (req, res) => {
         
     try {
         
-        const dadosNovos = Object.values(req.body)
+        const dadosNovos = req.body
         const resultado = await fornecedorController.atualizar(id, dadosNovos)
 
         if (resultado[0].affectedRows > 0) {
