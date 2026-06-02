@@ -47,7 +47,7 @@ router.get("/produto/:id", async (req, res) => {
 
 })
 
-router.post("/produtos", async (req, res) => {
+router.post("/produto", async (req, res) => {
 
     try {
 

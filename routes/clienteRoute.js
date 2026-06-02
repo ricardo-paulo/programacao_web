@@ -48,7 +48,7 @@ router.get("/cliente/:id", async (req, res) => {
 
 })
 
-router.post("/clientes" , async (req, res) => {
+router.post("/cliente" , async (req, res) => {
 
     try {
         

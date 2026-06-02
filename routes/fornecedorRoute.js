@@ -47,7 +47,7 @@ router.get("/fornecedor/:id", async (req, res) => {
 
 })
 
-router.post("/fornecedores", async (req, res) => {
+router.post("/fornecedor", async (req, res) => {
 
     try {
 
